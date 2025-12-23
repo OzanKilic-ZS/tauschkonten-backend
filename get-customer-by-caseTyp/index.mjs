@@ -15,6 +15,5 @@ export const handler = async (event) => {
     body: JSON.stringify(customerByCaseType),
   };
 
-  console.log("response", response);  
   return response;
 };
