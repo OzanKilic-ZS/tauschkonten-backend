@@ -1,4 +1,4 @@
-import { getCustomerByCaseType } from "./dynamodb.js"; 
+import { getZSTransactions } from "./dynamodb.js"; 
 
 export const handler = async (event) => {
   console.log("event", event);
@@ -9,11 +9,11 @@ export const handler = async (event) => {
       body: JSON.stringify({ message: "Missing id parameter" }),
     };
   }
-  const customerByCaseType = await getCustomerByCaseType(id);
+  const zstransaction = await getZSTransactions(id);
   const response = {
     statusCode: 200,
     headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "GET,OPTIONS", "Content-Type": "application/json" },
-    body: JSON.stringify(customerByCaseType),
+    body: JSON.stringify(zstransaction),
   };
 
   return response;
