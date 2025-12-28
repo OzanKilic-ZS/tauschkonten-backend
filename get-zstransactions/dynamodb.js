@@ -7,7 +7,18 @@ const ddbDocClient = DynamoDBDocumentClient.from(client);
 
 const TABLE_NAME = "ZSTransaction";
 
-async function getZSTransactions(id) {
+function filterFromDate(items, fromDate) {
+  if (!fromDate) return items;
+
+  const from = new Date(fromDate);
+
+  return items.filter(item => {
+    if (!item.lieferAbholdatum) return false;
+    return new Date(item.lieferAbholdatum) >= from;
+  });
+}
+
+async function getZSTransactions(id, fromDate) {
   const command = new QueryCommand({
     TableName: TABLE_NAME,
     KeyConditionExpression: "#pk = :pk",
@@ -19,8 +30,9 @@ async function getZSTransactions(id) {
     },
   });
   const result = await ddbDocClient.send(command);
-  const items = result.Items ?? [];
-  return items;
+  const items = filterFromDate(result.Items, fromDate); 
+
+  return items ?? [];
 }
 
 module.exports = { getZSTransactions };
