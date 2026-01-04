@@ -11,10 +11,12 @@ const TABLE_NAME = "ZSTransaction";
 export const handler = async (event) => {
   const body = JSON.parse(event.body || "{}");
   const id = event.pathParameters.id;
+  console.log("item.transactionId = " + item.transactionId);
 
+  const transactionId = event.pathParameters.transactionid ?? crypto.randomUUID();
   try {
       const item = {
-        transactionId: crypto.randomUUID(),
+        transactionId: transactionId,
         customer2CaseAndTypeId: id,
         custName: body.custName || "",
         custCaseTypeBeschreibung: body.custCaseTypeBeschreibung || "",
@@ -33,7 +35,7 @@ export const handler = async (event) => {
         bemerkung: body.bemerkung || "",
       };
   
-      console.log("item = " + item);
+      console.log("item.transactionId = " + item.transactionId);
       await ddbDocClient.send(
         new PutCommand({
           TableName: TABLE_NAME,
@@ -43,7 +45,7 @@ export const handler = async (event) => {
     
     return {
         statusCode: 201,
-        headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "GET,OPTIONS", "Content-Type": "application/json" },
+        headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "GET,POST,OPTIONS", "Content-Type": "application/json" },
         body: JSON.stringify({
           message: "Transaction erfolgreich erstellt",
           item
