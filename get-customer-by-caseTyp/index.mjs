@@ -1,8 +1,9 @@
 import { getCustomerByCaseType } from "./dynamodb.js"; 
 
 export const handler = async (event) => {
+  const id = event?.pathParameters?.id;
   console.log("event", event);
-  const id = event.pathParameters.id;
+
   if (!id) {
     return {
       statusCode: 400,

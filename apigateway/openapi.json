@@ -5,22 +5,16 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/api/customer-case-types/": {
+    "/api/customer-case-types": {
       "options": {
         "summary": "CORS support",
         "responses": {
           "200": {
             "description": "CORS response",
             "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": { "type": "string" }
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": { "type": "string" }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": { "type": "string" }
-              }
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Methods": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Headers": { "schema": { "type": "string" } }
             }
           }
         },
@@ -32,11 +26,6 @@
           "responses": {
             "default": {
               "statusCode": "200",
-              "responseParameters": {
-                "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'",
-                "method.response.header.Access-Control-Allow-Headers": "'*'"
-              },
               "responseTemplates": {
                 "application/json": "{}"
               }
@@ -50,17 +39,214 @@
           "200": {
             "description": "Successful response",
             "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": { "type": "string" }
-              }
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } }
             }
           }
         },
         "x-amazon-apigateway-integration": {
           "type": "aws_proxy",
           "httpMethod": "POST",
-          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:get-customer-cases/invocations",
-          "payloadFormatVersion": "2.0"
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:get-customer-cases/invocations"
+        }
+      }
+    },
+    "/api/customer-by-casetype/{id}": {
+      "options": {
+        "summary": "CORS support",
+        "responses": {
+          "200": {
+            "description": "CORS response",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Methods": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Headers": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "{}"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "summary": "Get customers by case type",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:get-customer-by-casetype/invocations"
+        }
+      }
+    },
+    "/api/zstransaction/{id}": {
+      "options": {
+        "summary": "CORS support",
+        "responses": {
+          "200": {
+            "description": "CORS response",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Methods": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Headers": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "{}"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+
+      "get": {
+        "summary": "Get ZS transaction by ID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:get-zstransactions/invocations"
+        }
+      },
+      "post": {
+        "summary": "Create ZS transaction for customer ID",
+        "responses": {
+          "200": {
+            "description": "Created",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:create-zstransaction/invocations"
+        }
+      }
+    },
+    "/api/zstransaction/{id}/{transactionid}": {
+      "options": {
+        "summary": "CORS support",
+        "responses": {
+          "200": {
+            "description": "CORS response",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Methods": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Headers": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "{}"
+              }
+            }
+          }
+        }
+      },
+
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        },
+        {
+          "name": "transactionid",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "put": {
+        "summary": "Update ZS transaction",
+        "responses": {
+          "200": {
+            "description": "Updated",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:create-zstransaction/invocations"
+        }
+      },
+
+      "delete": {
+        "summary": "Delete ZS transaction by ID + transactionid",
+        "responses": {
+          "200": {
+            "description": "Deleted",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:create-zstransaction/invocations"
         }
       }
     }
