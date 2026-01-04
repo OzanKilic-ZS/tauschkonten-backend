@@ -1,0 +1,68 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Tauschkonten API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/customer-case-types/": {
+      "options": {
+        "summary": "CORS support",
+        "responses": {
+          "200": {
+            "description": "CORS response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": { "type": "string" }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": { "type": "string" }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'"
+              },
+              "responseTemplates": {
+                "application/json": "{}"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get customer case types",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:get-customer-cases/invocations",
+          "payloadFormatVersion": "2.0"
+        }
+      }
+    }
+  }
+}

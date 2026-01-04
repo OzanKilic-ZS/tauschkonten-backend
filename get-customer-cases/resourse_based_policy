@@ -1,0 +1,47 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowApiGatewayInvokeGET",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "apigateway.amazonaws.com"
+      },
+      "Action": "lambda:InvokeFunction",
+      "Resource": "arn:aws:lambda:eu-central-1:730878888167:function:get-customer-cases",
+      "Condition": {
+        "ArnLike": {
+          "AWS:SourceArn": "arn:aws:execute-api:eu-central-1:730878888167:jrlzwwtg81/*/GET/api/customer-case-types/"
+        }
+      }
+    },
+    {
+      "Sid": "AllowApiGatewayInvokePOST",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "apigateway.amazonaws.com"
+      },
+      "Action": "lambda:InvokeFunction",
+      "Resource": "arn:aws:lambda:eu-central-1:730878888167:function:get-customer-cases",
+      "Condition": {
+        "ArnLike": {
+          "AWS:SourceArn": "arn:aws:execute-api:eu-central-1:730878888167:jrlzwwtg81/*/POST/api/customer-case-types/"
+        }
+      }
+    },
+    {
+      "Sid": "AllowApiGatewayInvokeOPTIONS",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "apigateway.amazonaws.com"
+      },
+      "Action": "lambda:InvokeFunction",
+      "Resource": "arn:aws:lambda:eu-central-1:730878888167:function:get-customer-cases",
+      "Condition": {
+        "ArnLike": {
+          "AWS:SourceArn": "arn:aws:execute-api:eu-central-1:730878888167:jrlzwwtg81/*/OPTIONS/api/customer-case-types/"
+        }
+      }
+    }
+  ]
+}

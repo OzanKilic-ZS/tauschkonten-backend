@@ -1,10 +1,11 @@
-import { getCustomerCases } from "./dynamodb.js"; 
+import { getAllSortedByOrderId } from "./dynamodb.js"; 
 
 export const handler = async (event) => {
-  const customerCase = await getCustomerCases();
+  const customerCase = await getAllSortedByOrderId();
   const response = {
     statusCode: 200,
-    body: customerCase,
+    headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "GET,OPTIONS", "Content-Type": "application/json" },
+    body: JSON.stringify(customerCase),
   };
   return response;
 };
