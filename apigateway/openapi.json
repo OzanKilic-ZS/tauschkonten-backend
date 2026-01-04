@@ -272,7 +272,7 @@
         "x-amazon-apigateway-integration": {
           "type": "aws_proxy",
           "httpMethod": "POST",
-          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:create-zstransaction/invocations"
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:delete-zstransaction/invocations"
         }
       }
     }
