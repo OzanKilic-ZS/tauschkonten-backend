@@ -2,8 +2,7 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 import crypto from "crypto";
 
-const client = new DynamoDBClient({ region: "eu-central-1", 
-  credentials: { accessKeyId: "AKIA2UK6GZDT6GMBXRND", secretAccessKey: "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"} });
+const client = new DynamoDBClient({ region: "eu-central-1" });
 const ddbDocClient = DynamoDBDocumentClient.from(client);
 
 const TABLE_NAME = "ZSTransaction";
