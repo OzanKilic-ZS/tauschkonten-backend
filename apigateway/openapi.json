@@ -26,6 +26,11 @@
           "responses": {
             "default": {
               "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'"
+              },
               "responseTemplates": {
                 "application/json": "{}"
               }
@@ -50,6 +55,7 @@
         }
       }
     },
+
     "/api/customer-by-casetype/{id}": {
       "options": {
         "summary": "CORS support",
@@ -71,6 +77,11 @@
           "responses": {
             "default": {
               "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'"
+              },
               "responseTemplates": {
                 "application/json": "{}"
               }
@@ -103,6 +114,7 @@
         }
       }
     },
+
     "/api/zstransaction/{id}": {
       "options": {
         "summary": "CORS support",
@@ -124,6 +136,11 @@
           "responses": {
             "default": {
               "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'"
+              },
               "responseTemplates": {
                 "application/json": "{}"
               }
@@ -131,6 +148,7 @@
           }
         }
       },
+
       "parameters": [
         {
           "name": "id",
@@ -156,6 +174,7 @@
           "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:730878888167:function:get-zstransactions/invocations"
         }
       },
+
       "post": {
         "summary": "Create ZS transaction for customer ID",
         "responses": {
@@ -173,6 +192,7 @@
         }
       }
     },
+
     "/api/zstransaction/{id}/{transactionid}": {
       "options": {
         "summary": "CORS support",
@@ -194,6 +214,11 @@
           "responses": {
             "default": {
               "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'PUT,DELETE,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Headers": "'*'"
+              },
               "responseTemplates": {
                 "application/json": "{}"
               }
@@ -216,6 +241,7 @@
           "schema": { "type": "string" }
         }
       ],
+
       "put": {
         "summary": "Update ZS transaction",
         "responses": {
@@ -234,7 +260,7 @@
       },
 
       "delete": {
-        "summary": "Delete ZS transaction by ID + transactionid",
+        "summary": "Delete ZS transaction",
         "responses": {
           "200": {
             "description": "Deleted",
