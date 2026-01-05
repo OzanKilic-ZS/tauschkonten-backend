@@ -10,7 +10,6 @@ const TABLE_NAME = "ZSTransaction";
 export const handler = async (event) => {
   const body = JSON.parse(event.body || "{}");
   const id = event.pathParameters.id;
-  console.log("item.transactionId = " + item.transactionId);
 
   const transactionId = event.pathParameters.transactionid ?? crypto.randomUUID();
   try {
@@ -32,6 +31,8 @@ export const handler = async (event) => {
         creationDate: new Date().toISOString(),
         createdBy: body.createdBy,  
         bemerkung: body.bemerkung || "",
+        saldenbestaetigungsPerson: body.saldenbestaetigungsPerson || "",
+        saldenbestaetigungsDatum: body.saldenbestaetigungsDatum || "",
       };
   
       console.log("item.transactionId = " + item.transactionId);
